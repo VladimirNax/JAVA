@@ -39,7 +39,7 @@ public class PhoneBook {
             }
         }
 
-        add(arrPhoneBook, name, phoneNumber);
+        add(arrPhoneBook, formatName(name), formatPhoneNumber(phoneNumber));
         list(arrPhoneBook);
 
     }
