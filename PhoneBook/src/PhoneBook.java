@@ -24,7 +24,11 @@ public class PhoneBook {
             isCorrectName = checkName(name);
             if (!isCorrectName) {
                 System.out.println("Введите корректное имя!");
-            } else {
+            } else if (searchName( arrPhoneBook,  name) ){
+                System.out.println("Такое Имя уже есть!");
+                isCorrectName = false;
+            }
+            else {
                 System.out.println(formatName(name));
             }
         }
@@ -88,15 +92,42 @@ public class PhoneBook {
 
     }
 
+    public static boolean searchName(String[][] book, String name) {
+        for (int i = 0; i < book.length; i++) {
+            for (int j = 0; j < 1; j++) {
+                if (name.equals(book[i][j])) {
+                    System.out.println("Tel: " + book[i][j + 1]);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean searchNumber(String[][] book, String number) {
+        boolean result = false;
+        for (int i = 0; i < book.length; i++) {
+            for (int j = 0; j < 1; j++) {
+                if (book[i][j].equals(number)) result = true;
+            }
+        }
+        return result;
+    }
+
+
+
     public static void add(String[][] book, String name, String number) {
         //add logic
+        System.out.println();
         for (int i = 0; i < book.length; i++) {
             for (int j = 0; j < 1; j++) {
                 if (book[i][j] == null) {
                     book[i][j] = name;
                     book[i][j + 1] = number;
+                    i = book.length - 1;
                     break;
                 }
+
             }
         }
     }
