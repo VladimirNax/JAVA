@@ -5,6 +5,7 @@ public class PhoneBook {
     public static void main(String[] args) {
         //Добавить считывание ввода пользователя в цикле
         Scanner scanner = new Scanner(System.in);
+
         String[][] arrPhoneBook = new String[50][2]; //50 — количество строк, 2 — столбцов
         arrPhoneBook[0][0] = "Иванов Иван Иванович";
         arrPhoneBook[0][1] = "8 911 999 99 99";
@@ -15,6 +16,8 @@ public class PhoneBook {
 
         list(arrPhoneBook);
 
+        System.out.println("Введите ФИО");
+
         String name = "";
         String phoneNumber = "";
 
@@ -22,6 +25,7 @@ public class PhoneBook {
         while (!isCorrectName) {
             name = scanner.nextLine(); //Считывает строку из System.in
             isCorrectName = checkName(name);
+
             if (!isCorrectName) {
                 System.out.println("Введите корректное имя!");
             } else if (searchName( arrPhoneBook,  name) ){
@@ -114,8 +118,6 @@ public class PhoneBook {
         return result;
     }
 
-
-
     public static void add(String[][] book, String name, String number) {
         //add logic
         System.out.println();
@@ -139,7 +141,5 @@ public class PhoneBook {
                 if (book[i][j] != null) System.out.println(book[i][j] + ": " + book[i][j + 1]);
             }
         }
-
-
     }
 }
