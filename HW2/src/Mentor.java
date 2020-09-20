@@ -19,20 +19,32 @@ public class Mentor extends Person implements Staff {
         System.out.println(student.getName() + "Молодец. гугл в помощь тупарь!");
     }
 
-    @Override
-    public void giveAdditionalMaterials() {
-
-    }
 
     public boolean checkCode(Task tasks) {
 
-        if(rand(500,1500)>1000){
+        /*if(rand(500,1500)>1000){
             System.out.println("задача принята");
             return true;
         } else {
             System.out.println("Задача №" +tasks.getNumber()+ "не принято");
             return false;
+        }*/
+        int number = Main.randomInt(0, 2000);
+        if (number > 1000) {
+            mood = true;
+            System.out.println("[" + tasks.textTask + "] Был проверен [" + getName() + "]") ;
+            return true;
         }
+        mood = false;
+        System.out.println("[" + tasks.textTask + "] Задача №"+tasks.number+ " не принята [" + getName() + "]");
+        return false;
+
+        /*mood = true;
+        System.out.println("[" + tasks.textTask + "] был проверен [ " + getName() + " ]") ;
+        return true;*/
+
+
+
 
     }
 

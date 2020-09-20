@@ -3,6 +3,6 @@ public interface AutoChecked {
 
     //Выполнить задание
     default void taskCompleted(){
-        System.out.println("задание выполнено!");
+        System.out.println("задание выполнено! Без проверки метором");
     }
 }

@@ -12,20 +12,13 @@ abstract class Task {
         this(0, "Начальная задача для студента. Введение");
     }
 
-    public int getNumber() {
-        return number;
-    }
-
-    public String getTextTask() {
-        return textTask;
-    }
 
     public Task(int number, String textTask) {
         this.number = number;
         this.textTask = textTask;
     }
 
-    //abstract void task();
+
 }
 
 class Test extends Task implements AutoChecked {
@@ -58,20 +51,24 @@ class DragAndDrop extends Task implements AutoChecked {
 
     public String[][] options; //Массив с вариантами ответов
 
-    public DragAndDrop(int number, String textTask) {
+    /*public DragAndDrop(int number, String textTask) {
         this(number, textTask, new String[][]{
-                {"a", "b", "c"},
+                {"a", "b"},
                 {"a", "b"},
                 {"a", "c"},
-                {"a", "b", "c","d"}
+                {"a", "b"}
         });
-    }
+    }*/
 
 
 
-    public DragAndDrop(int number, String textTask, String[][] options) {
+    public DragAndDrop(int number, String textTask ) {
         super(number, textTask);
-        this.options = options;
+        this.options = new String[2][2];
+        options[0][0] = "вариант1";
+        options[0][1] = "вариант2";
+        options[1][0] = "вариант3";
+        options[1][1] = "вариант4";
     }
 
     /*@Override
@@ -84,7 +81,7 @@ class DragAndDrop extends Task implements AutoChecked {
     }*/
 }
 
-class Code extends Task{
+class Code extends Task implements AutoChecked{
 
     public String codText; //Текст кода
 

@@ -1,54 +1,40 @@
 public class Student extends Person {
 
-    public int solvedTasks; // количество решенных задач
+
     public static int taskCountForAll; // Количество решенных задач всеми студентами
+
+    public int solvedTasks; // количество решенных задач
     public Mentor mentor; // Ментор
-    public boolean allTasks = false; // Флаг, что студент решил все задания
+    public boolean allTasks ; // Флаг, что студент решил все задания
 
+    public Student(String name, int age , Mentor mentor) {
+        this(name, age, mentor, 0);
 
-    public Student(String name, int age, boolean allTasks) {
-
-        this(name, age, 0, allTasks);
+    }
+    public Student(String name, int age , Mentor mentor, int solvedTasks) {
+        super(name, age);
+        this.solvedTasks = solvedTasks;
+        this.mentor = mentor;
     }
 
-    public Student(String name, int age, int solvedTask, boolean allTasks) {
-        super(name, age);
-        this.solvedTasks = solvedTask;
+    public void setAllTasks(boolean allTasks) {
         this.allTasks = allTasks;
     }
 
-    public int getSolvedTask() {
-        return solvedTasks;
-    }
-
-    public void setSolvedTask(int solvedProblems) {
-        this.solvedTasks = solvedProblems;
-    }
-
-    public boolean isAllTasks() {
-        return allTasks;
-    }
-
-    public Mentor getMentor() {
-        return mentor;
-    }
-
-    public void setMentor(Mentor mentor) {
-        this.mentor = mentor;
-    }
 
 
 
     // метод Решить задачи
     public void solveTasks(int numberTasks, Task[] tasks) {
-
-        for (int i = getSolvedTask(); i < numberTasks; i++) {
+        System.out.println("Студент[" + getName() + "]:  уже было решено ["+solvedTasks+"],  всего задач ["+ numberTasks+"] ");
+        for (int i = solvedTasks; i < numberTasks; i++) {
             solveTask(tasks[i]);
             if (solvedTasks >= tasks.length) {
                 allTasks = true;
-                System.out.println("[" + getName() + "] solved all tasks!");
+                System.out.println("[" + getName() + "] завершил все задания!");
             } else {
                 allTasks = false;
+                System.out.println("не все задачи решены");
             }
 
         }
@@ -58,13 +44,15 @@ public class Student extends Person {
     private void solveTask(Task task) {
         if (task instanceof AutoChecked) {
             ((AutoChecked) task).taskCompleted();
+            //while (!mentor.checkCode(task)) {}
         } else {
-            while (!mentor.checkCode(task)) {
-            }
+            while (!mentor.checkCode(task)) {}
+            //((AutoChecked) task).taskCompleted();
         }
         solvedTasks++;
         taskCountForAll++;
     }
+
 
 
 }
