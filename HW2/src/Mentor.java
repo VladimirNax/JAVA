@@ -2,8 +2,8 @@ import java.util.Random;
 
 public class Mentor extends Person implements Staff {
 
-    public boolean mood; // Настроение ментора
-    public Random random = new Random();
+    private boolean mood; // Настроение ментора
+    private Random random = new Random();
 
     public Mentor(String name, int age) {
         this(name, age, true);
@@ -29,14 +29,15 @@ public class Mentor extends Person implements Staff {
             System.out.println("Задача №" +tasks.getNumber()+ "не принято");
             return false;
         }*/
-        int number = Main.randomInt(0, 2000);
+        int number = Main.rand(0, 2000);
         if (number > 1000) {
             mood = true;
-            System.out.println("[" + tasks.textTask + "] Был проверен [" + getName() + "]") ;
+            System.out.println("[" + tasks.getTextTask() + "] Задачу принял [" + getName() + "]") ;
             return true;
         }
         mood = false;
-        System.out.println("[" + tasks.textTask + "] Задача №"+tasks.number+ " не принята [" + getName() + "]");
+        System.out.println("[" + tasks.getTextTask() + "] Задача №"+tasks.getNumber()+ " не принята [" + getName() + "]");
+        //giveAdditionalMaterials();
         return false;
 
         /*mood = true;
